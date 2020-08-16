@@ -28,4 +28,8 @@ public class Messages {
     public String noLevels() {
         return format("joinMessageNoLevels");
     }
+
+    public String menuError() {
+        return format("couldntMenu");
+    }
 }

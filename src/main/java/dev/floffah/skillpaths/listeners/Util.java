@@ -15,5 +15,6 @@ public class Util implements Listener {
     @EventHandler
     public void onDatabase(DatabaseLoadEvent e) {
         main.hdapi = new HeadDatabaseAPI();
+        main.getLogger().info("Hooked into HeadDatabase");
     }
 }
