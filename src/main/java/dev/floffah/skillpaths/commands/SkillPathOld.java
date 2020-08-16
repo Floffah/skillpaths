@@ -10,10 +10,10 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-public class SkillPath implements CommandExecutor {
+public class SkillPathOld implements CommandExecutor {
     SkillPaths main;
 
-    public SkillPath(SkillPaths mn) {
+    public SkillPathOld(SkillPaths mn) {
         main = mn;
     }
 
