@@ -1,7 +1,9 @@
 package dev.floffah.skillpaths;
 
 import dev.floffah.skillpaths.commands.SkillPath;
+import dev.floffah.skillpaths.listeners.UserStuff;
 import dev.floffah.skillpaths.listeners.Util;
+import dev.floffah.skillpaths.util.Messages;
 import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -19,7 +21,8 @@ public final class SkillPaths extends JavaPlugin {
     public File configfile;
     public YamlConfiguration config;
     public File messagesfile;
-    public YamlConfiguration messages;
+    public YamlConfiguration messagesc;
+    public Messages messages;
 
     public static Economy getEcon() {
         return econ;
@@ -51,7 +54,10 @@ public final class SkillPaths extends JavaPlugin {
         configfile = new File(getDataFolder() + "/config.yml");
         messagesfile = new File(getDataFolder() + "/messages.yml");
         config = YamlConfiguration.loadConfiguration(configfile);
-        messages = YamlConfiguration.loadConfiguration(messagesfile);
+        messagesc = YamlConfiguration.loadConfiguration(messagesfile);
+        messages = new Messages(messagesc);
+
+        getServer().getPluginManager().registerEvents(new UserStuff(this), this);
 
         getLogger().info("Enabled SkillPaths " + getDescription().getVersion());
     }

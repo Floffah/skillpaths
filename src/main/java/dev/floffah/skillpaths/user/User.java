@@ -4,6 +4,8 @@ import dev.floffah.skillpaths.skills.SkillType;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
+import java.io.IOException;
+
 public class User extends dev.floffah.util.user.User {
     private String dp = "plugins.skillpaths.";
 
@@ -11,6 +13,11 @@ public class User extends dev.floffah.util.user.User {
         super(pl, pluginreq);
         if(this.getData().get("plugins.skillpaths") == null) {
             this.getData().set("plugins.skillpaths.skillxp", 0);
+            try {
+                forceSave();
+            } catch (IOException e) {
+                System.err.println(e);
+            }
         }
     }
     

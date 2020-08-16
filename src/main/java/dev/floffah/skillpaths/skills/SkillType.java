@@ -5,10 +5,6 @@ public class SkillType {
 
     public int XPWorth;
 
-    enum SKILLPATHS {
-        AxeThrowing
-    }
-
     public SkillType(int worth) {
         XPWorth = worth;
     }
