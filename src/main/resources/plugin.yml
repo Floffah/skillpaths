@@ -6,6 +6,6 @@ depend: [FloffahUtil, Vault, HeadDatabase]
 authors: [Floffah]
 description: A skill paths plugin inspired by mcMMO
 commands:
-  skillpaths:
+  skills:
     description: SkillPaths
-    aliases: [sp,skillpath,skillpaths,skills,skill,paths,path]
+    aliases: [sp,skillpath,skillpaths,skill,paths,path]

@@ -4,27 +4,54 @@ import dev.floffah.skillpaths.commands.SkillPath;
 import dev.floffah.skillpaths.listeners.Util;
 import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import net.milkbowl.vault.economy.Economy;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public final class SkillPaths extends JavaPlugin {
+    private static Economy econ;
     public HeadDatabaseAPI hdapi;
 
-    private static Economy econ;
+    public File configfile;
+    public YamlConfiguration config;
+    public File messagesfile;
+    public YamlConfiguration messages;
+
+    public static Economy getEcon() {
+        return econ;
+    }
 
     @Override
     public void onEnable() {
-        if(getServer().getPluginManager().getPlugin("FloffahUtil") == null) {
+        if (getServer().getPluginManager().getPlugin("FloffahUtil") == null) {
             getLogger().warning("Couldnt not find plugin FloffahUtil.");
             getServer().getPluginManager().disablePlugin(this);
         }
-        if(getServer().getPluginManager().getPlugin("HeadDatabase") == null) {
+        if (getServer().getPluginManager().getPlugin("HeadDatabase") == null) {
             getLogger().warning("Couldnt not find plugin HeadDatabase.");
             getServer().getPluginManager().disablePlugin(this);
         }
 
         getServer().getPluginManager().registerEvents(new Util(this), this);
         vaultInit();
+
+        if(!Files.exists(Paths.get("plugins/Skillpaths"))) {
+            new File("plugins/SkillPaths").mkdirs();
+        }
+        if (!Files.exists(Paths.get(getDataFolder() + "/config.yml"))) {
+            saveResource("config.yml", false);
+        }
+        if (!Files.exists(Paths.get(getDataFolder() + "/messages.yml"))) {
+            saveResource("messages.yml", false);
+        }
+        configfile = new File(getDataFolder() + "/config.yml");
+        messagesfile = new File(getDataFolder() + "/messages.yml");
+        config = YamlConfiguration.loadConfiguration(configfile);
+        messages = YamlConfiguration.loadConfiguration(messagesfile);
 
         getLogger().info("Enabled SkillPaths " + getDescription().getVersion());
     }
@@ -39,8 +66,8 @@ public final class SkillPaths extends JavaPlugin {
             did = false;
         }
         econ = rsp.getProvider();
-        if(econ == null) did = false;
-        if(did == false) {
+        if (econ == null) did = false;
+        if (did == false) {
             getLogger().severe("Could not connect to Vault Economy. Disabling plugin...");
             getServer().getPluginManager().disablePlugin(this);
             return;
@@ -55,9 +82,5 @@ public final class SkillPaths extends JavaPlugin {
     @Override
     public void onDisable() {
         getLogger().info("Disabled SkillPaths " + getDescription().getVersion());
-    }
-
-    public static Economy getEcon() {
-        return econ;
     }
 }

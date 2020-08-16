@@ -1,0 +1,5 @@
+prefix: "&c&lSkillPaths &8» &r"
+
+
+# The message someone is sent if they have no levels. Usually if they haven't logged in since before this plugin was added
+joinMessageNoLevels: "&rHey! Looks like you have no levels. Do some stuff to get skill xp and then use &e/skills &lto level up!"
