@@ -5,13 +5,8 @@ import dev.floffah.skillpaths.gui.GUIEvents;
 import dev.floffah.skillpaths.listeners.UserStuff;
 import dev.floffah.skillpaths.util.Messages;
 import dev.floffah.util.Items.NamespaceMap;
-import me.arcaniax.hdb.api.DatabaseLoadEvent;
-import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -19,9 +14,8 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public final class SkillPaths extends JavaPlugin implements Listener {
+public final class SkillPaths extends JavaPlugin {
     private static Economy econ;
-    public HeadDatabaseAPI hdapi;
     public NamespaceMap keys;
 
     public File configfile;
@@ -45,26 +39,8 @@ public final class SkillPaths extends JavaPlugin implements Listener {
             getServer().getPluginManager().disablePlugin(this);
         }
 
-        try {
-            hdapi = new HeadDatabaseAPI();
-            ItemStack jukebox = hdapi.getItemHead("17104");
-            if (jukebox != null) {
-                getLogger().info("Hooked into HeadDatabase");
-                vaultInit();
-            }
-        } catch (NullPointerException e) {
-            hdapi = null;
-        }
-
-        getServer().getPluginManager().registerEvents(this, this);
-
-    }
-
-    @EventHandler
-    public void onDatabase(DatabaseLoadEvent e) {
-        hdapi = new HeadDatabaseAPI();
-        getLogger().info("Hooked into HeadDatabase");
         vaultInit();
+
     }
 
     void vaultInit() {
