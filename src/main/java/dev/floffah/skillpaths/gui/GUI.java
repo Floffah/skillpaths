@@ -54,6 +54,7 @@ public class GUI implements Listener {
         ItemStack back = Items.getHead(main, true, SPTypes.GoHomeItem, HeadInfo.cyanBack);
 
         inv.setItem(10, back);
+        inv.setItem(28, Items.getSkillPane(user, main, SkillType.AxeThrowing));
 
         addBorder(inv, main);
 

@@ -3,6 +3,7 @@ package dev.floffah.skillpaths.gui;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import dev.floffah.skillpaths.SkillPaths;
+import dev.floffah.skillpaths.skills.SkillType;
 import dev.floffah.skillpaths.user.User;
 import dev.floffah.skillpaths.util.Glow;
 import dev.floffah.util.chat.Colours;
@@ -17,6 +18,9 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 public class Items {
@@ -86,22 +90,6 @@ public class Items {
         ItemStack skill = new ItemStack(Material.PAPER);
         ItemMeta meta = skill.getItemMeta();
 
-        try {
-            Field f = Enchantment.class.getDeclaredField("acceptingNew");
-            f.setAccessible(true);
-            f.set(null, true);
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-        try {
-            Glow glow = new Glow(main.keys.get("glow"));
-            Enchantment.registerEnchantment(glow);
-        } catch (IllegalArgumentException e) {
-            System.err.println(e);
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-
         Glow glow = new Glow(main.keys.get("glow"));
         meta.addEnchant(glow, 1, true);
 
@@ -127,5 +115,40 @@ public class Items {
         playerhead.setItemMeta(pmeta);
 
         return playerhead;
+    }
+
+    public static ItemStack getSkillPane(User user, SkillPaths main, SkillType st) {
+        if(!st.isUnlocked(user)) {
+            ItemStack nosp = new ItemStack(Material.RED_STAINED_GLASS_PANE);
+            ItemMeta nospmeta = nosp.getItemMeta();
+            setAvoid(nospmeta, main);
+            nospmeta.setDisplayName(Colours.def("&c&lNot Unlocked"));
+            nospmeta.setLore(Arrays.asList(Colours.def("&9Skill: &b" + censorRandom(st.name))));
+            nosp.setItemMeta(nospmeta);
+            return nosp;
+        }
+
+        ItemStack sp = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
+
+
+
+        return sp;
+    }
+
+    public static void setAvoid(ItemMeta item, SkillPaths main) {
+        PersistentDataContainer pdc = item.getPersistentDataContainer();
+        pdc.set(main.keys.get("avoid"), PersistentDataType.INTEGER, 1);
+    }
+
+    public static String censorRandom(String str) {
+        char[] chars = str.toCharArray();
+        List<Character> replacers = Arrays.asList('*', '#', '=', '@');
+
+        for(int i=0; i < chars.length / 2; i++) {
+            Character replace = replacers.get(new Random().nextInt(replacers.size()));
+            chars[(int)(Math.random() * chars.length)] = replace;
+        }
+
+        return new String(chars);
     }
 }

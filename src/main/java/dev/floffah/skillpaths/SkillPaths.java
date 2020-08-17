@@ -3,14 +3,17 @@ package dev.floffah.skillpaths;
 import dev.floffah.skillpaths.commands.Skills;
 import dev.floffah.skillpaths.gui.GUIEvents;
 import dev.floffah.skillpaths.listeners.UserStuff;
+import dev.floffah.skillpaths.util.Glow;
 import dev.floffah.skillpaths.util.Messages;
 import dev.floffah.util.Items.NamespaceMap;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -37,6 +40,22 @@ public final class SkillPaths extends JavaPlugin {
         if (getServer().getPluginManager().getPlugin("HeadDatabase") == null) {
             getLogger().warning("Couldnt not find plugin HeadDatabase.");
             getServer().getPluginManager().disablePlugin(this);
+        }
+
+        try {
+            Field f = Enchantment.class.getDeclaredField("acceptingNew");
+            f.setAccessible(true);
+            f.set(null, true);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        try {
+            Glow glow = new Glow(keys.get("glow"));
+            Enchantment.registerEnchantment(glow);
+        } catch (IllegalArgumentException e) {
+            System.err.println(e);
+        } catch (Exception e) {
+            System.err.println(e);
         }
 
         vaultInit();
