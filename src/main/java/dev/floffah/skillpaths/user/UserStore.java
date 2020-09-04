@@ -51,4 +51,8 @@ public class UserStore {
             return false;
         }
     }
+
+    public void remove(Player player) {
+        remove(player.getUniqueId());
+    }
 }
