@@ -18,7 +18,7 @@ public class UserStuff implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
-        User user = new User(player, main);
+        User user = main.users.find(player);
         if(user.getSkillXP() == 0) {
             main.getServer().getScheduler().scheduleSyncDelayedTask(main, new Runnable() {
                 @Override

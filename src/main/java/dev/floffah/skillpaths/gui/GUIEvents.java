@@ -28,7 +28,7 @@ public class GUIEvents implements Listener {
             if (pdc.has(main.keys.get("sptype"), PersistentDataType.INTEGER)) {
                 int sptype = pdc.get(main.keys.get("sptype"), PersistentDataType.INTEGER);
                 if (sptype == SPTypes.SkillListBook) {
-                    GUI.skillPage(new User((Player) e.getWhoClicked(), main), main);
+                    GUI.skillPage(main.users.find((Player) e.getWhoClicked()), main);
                 } else if (sptype == SPTypes.GoHomeItem) {
                     e.getWhoClicked().openInventory(GUI.mainPage(new User((Player) e.getWhoClicked(), main), main));
                 }

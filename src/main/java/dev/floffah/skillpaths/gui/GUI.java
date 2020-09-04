@@ -16,7 +16,7 @@ import org.bukkit.persistence.PersistentDataType;
 
 public class GUI implements Listener {
     public static void openInv(Player player, SkillPaths main) {
-        User user = new User(player, main);
+        User user = main.users.find(player);
 
         user.getPlayer().openInventory(mainPage(user, main));
     }

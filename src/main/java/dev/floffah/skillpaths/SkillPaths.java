@@ -3,6 +3,7 @@ package dev.floffah.skillpaths;
 import dev.floffah.skillpaths.commands.Skills;
 import dev.floffah.skillpaths.gui.GUIEvents;
 import dev.floffah.skillpaths.listeners.UserStuff;
+import dev.floffah.skillpaths.user.UserStore;
 import dev.floffah.skillpaths.util.Glow;
 import dev.floffah.skillpaths.util.Messages;
 import dev.floffah.util.Items.NamespaceMap;
@@ -20,6 +21,7 @@ import java.nio.file.Paths;
 public final class SkillPaths extends JavaPlugin {
     private static Economy econ;
     public NamespaceMap keys;
+    public UserStore users;
 
     public File configfile;
     public YamlConfiguration config;
@@ -83,6 +85,7 @@ public final class SkillPaths extends JavaPlugin {
 
     void postVault() {
         keys = new NamespaceMap(this);
+        users = new UserStore(this);
 
         getServer().getPluginManager().registerEvents(new GUIEvents(this), this);
         getServer().getPluginManager().registerEvents(new UserStuff(this), this);
