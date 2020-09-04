@@ -3,23 +3,16 @@ package dev.floffah.skillpaths.gui;
 import dev.floffah.skillpaths.SkillPaths;
 import dev.floffah.skillpaths.skills.SkillType;
 import dev.floffah.skillpaths.user.User;
-import dev.floffah.skillpaths.util.Glow;
 import dev.floffah.util.chat.Colours;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
-
-import java.lang.reflect.Field;
-import java.util.Arrays;
 
 public class GUI implements Listener {
     public static void openInv(Player player, SkillPaths main) {
@@ -54,7 +47,7 @@ public class GUI implements Listener {
         ItemStack back = Items.getHead(main, true, SPTypes.GoHomeItem, HeadInfo.cyanBack);
 
         inv.setItem(10, back);
-        inv.setItem(28, Items.getSkillPane(user, main, SkillType.AxeThrowing));
+        inv.setItem(28, Items.getSkillPane(user, main, SkillType.Agility));
 
         addBorder(inv, main);
 

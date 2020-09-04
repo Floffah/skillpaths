@@ -129,8 +129,9 @@ public class Items {
         }
 
         ItemStack sp = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
-
-
+        ItemMeta spm = sp.getItemMeta();
+        setAvoid(spm, main);
+        sp.setItemMeta(spm);
 
         return sp;
     }
@@ -140,9 +141,15 @@ public class Items {
         pdc.set(main.keys.get("avoid"), PersistentDataType.INTEGER, 1);
     }
 
+    public static void setAvoid(ItemStack item, SkillPaths main) {
+        ItemMeta itemm = item.getItemMeta();
+        setAvoid(itemm, main);
+        item.setItemMeta(itemm);
+    }
+
     public static String censorRandom(String str) {
         char[] chars = str.toCharArray();
-        List<Character> replacers = Arrays.asList('*', '#', '=', '@');
+        List<Character> replacers = Arrays.asList('*');
 
         for(int i=0; i < chars.length / 2; i++) {
             Character replace = replacers.get(new Random().nextInt(replacers.size()));
