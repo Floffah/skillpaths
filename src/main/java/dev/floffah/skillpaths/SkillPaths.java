@@ -56,26 +56,26 @@ public final class SkillPaths extends JavaPlugin {
             System.err.println(e);
         }
 
-        vaultInit();
-
+        //vaultInit();
+        postVault();
     }
 
     void vaultInit() {
-        Boolean did = true;
+        boolean did = true;
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
             did = false;
+            getLogger().severe("Vault is not present. Disabling plugin...");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
         }
         RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
         if (rsp == null) {
             did = false;
-        }
-        econ = rsp.getProvider();
-        if (econ == null) did = false;
-        if (did == false) {
-            getLogger().severe("Could not connect to Vault Economy. Disabling plugin...");
+            getLogger().severe("Vault economy was null. Disabling plugin...");
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
+        econ = rsp.getProvider();
         postVault();
     }
 

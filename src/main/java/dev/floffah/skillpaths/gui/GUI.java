@@ -52,7 +52,7 @@ public class GUI implements Listener {
         int[] skillput = new int[] {20,21,22,23,24,25,26,29,30,31,32,33,34,35,38,39,41,42,43,44};
 
         for(int i = 0;i<skills.length;i++) {
-            inv.setItem(skillput[i], Items.getSkillPane(user, main, skills[i]));
+            inv.setItem(skillput[i] - 1, Items.getSkillPane(user, main, skills[i]));
         }
 
         addBorder(inv, main);
@@ -65,32 +65,11 @@ public class GUI implements Listener {
     }
 
     public static void addBorder(Inventory inv, SkillPaths main) {
-        inv.setItem(0, borderItem(main));
-        inv.setItem(1, borderItem(main));
-        inv.setItem(2, borderItem(main));
-        inv.setItem(3, borderItem(main));
-        inv.setItem(4, borderItem(main));
-        inv.setItem(5, borderItem(main));
-        inv.setItem(6, borderItem(main));
-        inv.setItem(7, borderItem(main));
-        inv.setItem(8, borderItem(main));
-        inv.setItem(9, borderItem(main));
-        inv.setItem(17, borderItem(main));
-        inv.setItem(18, borderItem(main));
-        inv.setItem(26, borderItem(main));
-        inv.setItem(27, borderItem(main));
-        inv.setItem(35, borderItem(main));
-        inv.setItem(36, borderItem(main));
-        inv.setItem(44, borderItem(main));
-        inv.setItem(45, borderItem(main));
-        inv.setItem(46, borderItem(main));
-        inv.setItem(47, borderItem(main));
-        inv.setItem(48, borderItem(main));
-        inv.setItem(49, borderItem(main));
-        inv.setItem(50, borderItem(main));
-        inv.setItem(51, borderItem(main));
-        inv.setItem(52, borderItem(main));
-        inv.setItem(53, borderItem(main));
+        int[] put = new int[] {0,1,2,3,4,5,6,7,8,9,17,18,26,27,35,36,44,45,46,47,48,49,50,51,52,53};
+
+        for(int i = 0;i<put.length;i++) {
+            inv.setItem(put[i], borderItem(main));
+        }
     }
 
     public static ItemStack borderItem(SkillPaths main) {

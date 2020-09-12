@@ -31,7 +31,7 @@ public class UserStore {
         if(users.containsKey(player.getUniqueId())) {
             return users.get(player.getUniqueId());
         } else {
-            User user = main.users.find(player);
+            User user = new User(player, main);
             users.put(player.getUniqueId(), user);
             return user;
         }

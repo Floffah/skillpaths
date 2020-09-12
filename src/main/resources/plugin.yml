@@ -2,7 +2,7 @@ name: SkillPaths
 version: ${project.version}
 main: dev.floffah.skillpaths.SkillPaths
 api-version: 1.15
-depend: [FloffahUtil, Vault, HeadDatabase]
+depend: [FloffahUtil, Vault]
 authors: [Floffah]
 description: A skill paths plugin inspired by mcMMO
 commands:
