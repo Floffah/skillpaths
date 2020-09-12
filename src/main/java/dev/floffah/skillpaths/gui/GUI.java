@@ -47,7 +47,13 @@ public class GUI implements Listener {
         ItemStack back = Items.getHead(main, true, SPTypes.GoHomeItem, HeadInfo.cyanBack);
 
         inv.setItem(10, back);
-        inv.setItem(28, Items.getSkillPane(user, main, SkillType.Agility));
+
+        SkillType[] skills = new SkillType[] {SkillType.Endurance, SkillType.Agility};
+        int[] skillput = new int[] {20,21,22,23,24,25,26,29,30,31,32,33,34,35,38,39,41,42,43,44};
+
+        for(int i = 0;i<skills.length;i++) {
+            inv.setItem(skillput[i], Items.getSkillPane(user, main, skills[i]));
+        }
 
         addBorder(inv, main);
 

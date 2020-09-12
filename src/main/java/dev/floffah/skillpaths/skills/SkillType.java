@@ -7,6 +7,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class SkillType {
+    //Character
+    public static final SkillType Endurance = new SkillType(250, "endurance", Material.DIAMOND_HELMET);
     public static final SkillType Agility = new SkillType(250, "agility", Material.DIAMOND_BOOTS);
 
     public int XPWorth;

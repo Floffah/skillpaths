@@ -39,10 +39,6 @@ public final class SkillPaths extends JavaPlugin {
             getLogger().warning("Couldnt not find plugin FloffahUtil.");
             getServer().getPluginManager().disablePlugin(this);
         }
-        if (getServer().getPluginManager().getPlugin("HeadDatabase") == null) {
-            getLogger().warning("Couldnt not find plugin HeadDatabase.");
-            getServer().getPluginManager().disablePlugin(this);
-        }
 
         try {
             Field f = Enchantment.class.getDeclaredField("acceptingNew");
