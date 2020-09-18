@@ -3,6 +3,8 @@ package dev.floffah.skillpaths;
 import dev.floffah.skillpaths.commands.Skills;
 import dev.floffah.skillpaths.gui.GUIEvents;
 import dev.floffah.skillpaths.listeners.UserStuff;
+import dev.floffah.skillpaths.skills.XPActions;
+import dev.floffah.skillpaths.skills.XPBenefits;
 import dev.floffah.skillpaths.user.UserStore;
 import dev.floffah.skillpaths.util.Glow;
 import dev.floffah.skillpaths.util.Messages;
@@ -85,6 +87,8 @@ public final class SkillPaths extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new GUIEvents(this), this);
         getServer().getPluginManager().registerEvents(new UserStuff(this), this);
+        getServer().getPluginManager().registerEvents(new XPActions(this), this);
+        getServer().getPluginManager().registerEvents(new XPBenefits(this), this);
         getCommand("skillpaths").setExecutor(new Skills(this));
 
         if (!Files.exists(Paths.get("plugins/Skillpaths"))) {

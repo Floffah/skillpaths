@@ -10,6 +10,12 @@ public class Messages {
         c = m;
     }
 
+    /**
+     * Format a config message to have the configurable prefix before it..
+     *
+     * @param message the message
+     * @return the string
+     */
     public String format(String message) {
         String msg;
         if (c != null) {
