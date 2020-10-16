@@ -70,6 +70,10 @@
             <id>minecraft-repo</id>
             <url>https://libraries.minecraft.net/</url>
         </repository>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/Floffah/util</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -81,7 +85,7 @@
         </dependency>
         <dependency>
             <groupId>dev.floffah</groupId>
-            <artifactId>FloffahUtil</artifactId>
+            <artifactId>util</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>

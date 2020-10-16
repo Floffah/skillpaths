@@ -8,7 +8,7 @@ import dev.floffah.skillpaths.skills.XPBenefits;
 import dev.floffah.skillpaths.user.UserStore;
 import dev.floffah.skillpaths.util.Glow;
 import dev.floffah.skillpaths.util.Messages;
-import dev.floffah.util.Items.NamespaceMap;
+import dev.floffah.util.items.NamespaceMap;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
