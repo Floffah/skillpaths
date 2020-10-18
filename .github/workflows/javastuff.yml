@@ -2,10 +2,8 @@ on:
   push:
     branches:
       - master
-  pull_request:
-    branches:
-      - main
-
+    paths: ["src/**"]
+    paths-ignore: ["docs/**"]
 
 jobs:
   javadoc:
