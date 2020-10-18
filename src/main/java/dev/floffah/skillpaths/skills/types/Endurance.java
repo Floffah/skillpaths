@@ -25,9 +25,9 @@ public class Endurance extends SkillType {
                 if(main.getServer().getPlayer(uuid) != null && main.getServer().getPlayer(uuid).isSprinting()) {
                     if(main.config.val.skills.character.endurance.sprintMode == 0) {
                         if(action.amount >= main.config.val.skills.character.endurance.timerTime) {
-                            action.amount = 0;
                             User user = main.users.find(uuid);
                             user.addSkillXP(main.config.val.skills.character.endurance.timerAmount);
+                            action.amount = 0;
                         } else {
                             action.amount++;
                         }

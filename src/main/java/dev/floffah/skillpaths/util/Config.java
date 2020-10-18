@@ -2,6 +2,7 @@ package dev.floffah.skillpaths.util;
 
 import dev.floffah.skillpaths.SkillPaths;
 import dev.floffah.util.config.ConfigProvider;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Config extends ConfigProvider {
@@ -16,14 +17,17 @@ public class Config extends ConfigProvider {
         val = new ConfigCache();
 
         val.skills = new ConfigCache.SkillsCache();
+        ConfigurationSection skills = conf.getConfigurationSection("skills");
 
         val.skills.character = new ConfigCache.SkillsCache.CharacterSkillCache();
+        ConfigurationSection character = skills.getConfigurationSection("character");
 
         val.skills.character.endurance = new ConfigCache.SkillsCache.CharacterSkillCache.EnduranceSKillCache();
-        val.skills.character.endurance.sprintMode = conf.getInt("skills.character.endurance.sprint-mode");
-        val.skills.character.endurance.timerTime = conf.getInt("skills.character.endurance.timer-time");
-        val.skills.character.endurance.timerAmount = conf.getInt("skills.character.endurance.timer-amount");
-        val.skills.character.endurance.secondsAmount = conf.getInt("skills.character.endurance.seconds-amount");
+        ConfigurationSection endurance = character.getConfigurationSection("endurance");
+        val.skills.character.endurance.sprintMode = endurance.getInt("sprint-mode");
+        val.skills.character.endurance.timerTime = endurance.getInt("timer-time");
+        val.skills.character.endurance.timerAmount = endurance.getInt("timer-amount");
+        val.skills.character.endurance.secondsAmount = endurance.getInt("seconds-amount");
     }
 
     public static class ConfigCache {

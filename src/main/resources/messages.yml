@@ -4,4 +4,4 @@ prefix: "&c&lSkillPaths &8\u00BB &r"
 no-levels: "&rHey! Looks like you have no levels. Do some stuff to get skill xp and then use &e/skills &rto level up!"
 
 # The message sent to a player when there was a problem opening a menu
-couldnt-open-menu: "&cOops... Looks like something went wrong while trying to open that menu."
+menu-error: "&cOops... Looks like something went wrong while trying to open that menu."

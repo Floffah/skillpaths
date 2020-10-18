@@ -68,6 +68,8 @@ public final class SkillPaths extends JavaPlugin {
             System.err.println(e);
         }
 
+        skills = new SkillType[]{new Endurance(), new Agility()};
+
         for (SkillType skill : skills) {
             skill.init(this);
         }
@@ -117,8 +119,6 @@ public final class SkillPaths extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new GUIEvents(this), this);
         getServer().getPluginManager().registerEvents(new UserStuff(this), this);
         getCommand("skillpaths").setExecutor(new Skills(this));
-
-        skills = new SkillType[]{new Endurance(), new Agility()};
 
         if (!Files.exists(Paths.get("plugins/Skillpaths"))) {
             new File("plugins/SkillPaths").mkdirs();

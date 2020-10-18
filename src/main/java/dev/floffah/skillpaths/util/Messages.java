@@ -20,7 +20,7 @@ public class Messages extends ConfigProvider {
 
         val.noLevels = conf.getString("no-levels");
 
-        val.menuError = conf.getString("couldnt-open-menu");
+        val.menuError = conf.getString("menu-error");
     }
 
     public String format(String message) {

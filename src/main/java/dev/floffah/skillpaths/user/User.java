@@ -50,7 +50,7 @@ public class User extends dev.floffah.util.user.User {
      */
     public int addSkillXP(int skillxp) {
         this.getData().set(dp + "skillxp", this.getData().getInt(dp + "skillxp") + skillxp);
-        TextComponent text = new TextComponent("+" + skillxp);
+        TextComponent text = new TextComponent("+" + skillxp + "Skill XP");
         text.setColor(ChatColor.GREEN);
         getPlayer().sendActionBar(text);
         return this.getData().getInt(dp + "skillxp");
