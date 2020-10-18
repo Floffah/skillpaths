@@ -1,7 +1,7 @@
 prefix: "&c&lSkillPaths &8\u00BB &r"
 
 # The message someone is sent if they have no levels. Usually if they haven't logged in since before this plugin was added
-joinMessageNoLevels: "&rHey! Looks like you have no levels. Do some stuff to get skill xp and then use &e/skills &rto level up!"
+no-levels: "&rHey! Looks like you have no levels. Do some stuff to get skill xp and then use &e/skills &rto level up!"
 
 # The message sent to a player when there was a problem opening a menu
-couldntMenu: "&cOops... Looks like something went wrong while trying to open that menu."
+couldnt-open-menu: "&cOops... Looks like something went wrong while trying to open that menu."

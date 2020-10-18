@@ -1,6 +1,8 @@
 package dev.floffah.skillpaths.user;
 
 import dev.floffah.skillpaths.skills.SkillType;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -48,6 +50,9 @@ public class User extends dev.floffah.util.user.User {
      */
     public int addSkillXP(int skillxp) {
         this.getData().set(dp + "skillxp", this.getData().getInt(dp + "skillxp") + skillxp);
+        TextComponent text = new TextComponent("+" + skillxp);
+        text.setColor(ChatColor.GREEN);
+        getPlayer().sendActionBar(text);
         return this.getData().getInt(dp + "skillxp");
     }
 

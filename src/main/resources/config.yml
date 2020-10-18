@@ -1,1 +1,18 @@
-hello: "world"
+# Skill configuration
+skills:
+  character:
+    endurance:
+      # MODES:
+      # - 0: sprint-timer: every how many seconds, the player will be given that amount of seconds multiplied by the xp that should be given
+      # - 1: sprint-seconds: when the player stops sprinting,
+      sprint-mode: 0
+      # only i mode is 0
+      # after 20 seconds
+      timer-time: 20
+      # how much xp should they be given
+      timer-amount: 100
+
+      # only if mode is 1
+      # for each second, how many xp should they be given.
+      # default explanation: 100/20=5
+      seconds-amount: 5

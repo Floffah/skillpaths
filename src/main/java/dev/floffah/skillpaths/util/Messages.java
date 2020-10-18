@@ -1,41 +1,37 @@
 package dev.floffah.skillpaths.util;
 
-import dev.floffah.util.chat.Colours;
-import org.bukkit.configuration.file.YamlConfiguration;
+import dev.floffah.skillpaths.SkillPaths;
+import dev.floffah.util.config.ConfigProvider;
+import org.bukkit.ChatColor;
+import org.bukkit.plugin.java.JavaPlugin;
 
-public class Messages {
-    private final YamlConfiguration c;
+public class Messages extends ConfigProvider {
+    public MessageCache val;
 
-    public Messages(YamlConfiguration m) {
-        c = m;
+    public Messages(SkillPaths main) {
+        super(main, "messages.yml");
     }
 
-    /**
-     * Format a config message to have the configurable prefix before it..
-     *
-     * @param message the message
-     * @return the string
-     */
+    @Override
+    public void load() {
+        val = new MessageCache();
+
+        val.prefix = conf.getString("prefix");
+
+        val.noLevels = conf.getString("no-levels");
+
+        val.menuError = conf.getString("couldnt-open-menu");
+    }
+
     public String format(String message) {
-        String msg;
-        if (c != null) {
-            if (c.getString("prefix") != null) {
-                msg = c.getString("prefix")
-                        + c.getString(message);
-            } else {
-                msg = c.getString("prefix") + " &cThere is a problem with a message in messages.yml";
-            }
-        } else {
-            msg = "&c&lSkillPaths &8» &cThere is a problem with messages.yml";
-        }
-        return Colours.def(msg);
+        return ChatColor.translateAlternateColorCodes('&', val.prefix + message);
     }
 
-    public String noLevels() {
-        return format("joinMessageNoLevels");
-    }
+    public static class MessageCache {
+        public String prefix;
 
-    public String menuError() {
-        return format("couldntMenu");
+        public String noLevels;
+
+        public String menuError;
     }
 }

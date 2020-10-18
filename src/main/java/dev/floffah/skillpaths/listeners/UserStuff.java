@@ -21,12 +21,7 @@ public class UserStuff implements Listener {
         Player player = e.getPlayer();
         User user = main.users.find(player);
         if(user.getSkillXP() == 0) {
-            main.getServer().getScheduler().scheduleSyncDelayedTask(main, new Runnable() {
-                @Override
-                public void run() {
-                    player.sendMessage(main.messages.noLevels());
-                }
-            }, 40);
+            main.getServer().getScheduler().scheduleSyncDelayedTask(main, () -> player.sendMessage(main.messages.format(main.messages.val.noLevels)), 40);
         }
     }
 

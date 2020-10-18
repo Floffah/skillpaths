@@ -4,16 +4,14 @@ import dev.floffah.skillpaths.commands.Skills;
 import dev.floffah.skillpaths.gui.GUIEvents;
 import dev.floffah.skillpaths.listeners.UserStuff;
 import dev.floffah.skillpaths.skills.SkillType;
-import dev.floffah.skillpaths.skills.XPActions;
-import dev.floffah.skillpaths.skills.XPBenefits;
 import dev.floffah.skillpaths.skills.types.Agility;
 import dev.floffah.skillpaths.skills.types.Endurance;
 import dev.floffah.skillpaths.user.UserStore;
+import dev.floffah.skillpaths.util.Config;
 import dev.floffah.skillpaths.util.Glow;
 import dev.floffah.skillpaths.util.Messages;
 import dev.floffah.util.items.NamespaceMap;
 import net.milkbowl.vault.economy.Economy;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -29,15 +27,18 @@ public final class SkillPaths extends JavaPlugin {
     public NamespaceMap keys;
     public UserStore users;
 
-    public File configfile;
-    public YamlConfiguration config;
-    public File messagesfile;
-    public YamlConfiguration messagesc;
+//    public File configfile;
+//    public YamlConfiguration config;
+//    public File messagesfile;
+//    public YamlConfiguration messagesc;
+//    public Messages messages;
+
+    public Config config;
     public Messages messages;
 
     public Path userData;
 
-    public SkillType[] skills = new SkillType[] {new Endurance(), new Agility()};
+    public SkillType[] skills;
 
     public static Economy getEcon() {
         return econ;
@@ -76,12 +77,12 @@ public final class SkillPaths extends JavaPlugin {
     }
 
     public void legacyFloffahUtilOnEnable() {
-        if(!Files.exists(getDataFolder().toPath())) {
+        if (!Files.exists(getDataFolder().toPath())) {
             getDataFolder().mkdir();
             getLogger().info("Created plugin directory");
         }
         userData = Paths.get(getDataFolder().toURI().toString(), "data");
-        if(!Files.exists(userData)) {
+        if (!Files.exists(userData)) {
             new File(userData.toString()).mkdir();
             getLogger().info("Created data directory");
         }
@@ -107,14 +108,17 @@ public final class SkillPaths extends JavaPlugin {
     }
 
     void postVault() {
+        config = new Config(this);
+        messages = new Messages(this);
+
         keys = new NamespaceMap(this);
         users = new UserStore(this);
 
         getServer().getPluginManager().registerEvents(new GUIEvents(this), this);
         getServer().getPluginManager().registerEvents(new UserStuff(this), this);
-        getServer().getPluginManager().registerEvents(new XPActions(this), this);
-        getServer().getPluginManager().registerEvents(new XPBenefits(this), this);
         getCommand("skillpaths").setExecutor(new Skills(this));
+
+        skills = new SkillType[]{new Endurance(), new Agility()};
 
         if (!Files.exists(Paths.get("plugins/Skillpaths"))) {
             new File("plugins/SkillPaths").mkdirs();
@@ -125,11 +129,11 @@ public final class SkillPaths extends JavaPlugin {
         if (!Files.exists(Paths.get(getDataFolder() + "/messages.yml"))) {
             saveResource("messages.yml", false);
         }
-        configfile = new File(getDataFolder() + "/config.yml");
-        messagesfile = new File(getDataFolder() + "/messages.yml");
-        config = YamlConfiguration.loadConfiguration(configfile);
-        messagesc = YamlConfiguration.loadConfiguration(messagesfile);
-        messages = new Messages(messagesc);
+//        configfile = new File(getDataFolder() + "/config.yml");
+//        messagesfile = new File(getDataFolder() + "/messages.yml");
+//        config = YamlConfiguration.loadConfiguration(configfile);
+//        messagesc = YamlConfiguration.loadConfiguration(messagesfile);
+//        messages = new Messages(messagesc);
 
 
         getLogger().info("Enabled SkillPaths " + getDescription().getVersion());

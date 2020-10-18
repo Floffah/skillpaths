@@ -7,9 +7,4 @@ public class Agility extends SkillType {
     public Agility() {
         super(250, "agility", Material.DIAMOND_BOOTS);
     }
-
-    @Override
-    public void registerListeners() {
-        super.registerListeners();
-    }
 }

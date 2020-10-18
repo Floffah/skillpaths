@@ -9,7 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class SkillType implements Listener {
-    SkillPaths main;
+    public SkillPaths main;
 
     public int XPWorth;
     public ItemStack displayItem;
@@ -19,7 +19,9 @@ public class SkillType implements Listener {
     public void init(SkillPaths main) {
         this.main = main;
 
-        registerListeners();
+        main.getServer().getPluginManager().registerEvents(this, main);
+
+        postinit();
     }
 
     public SkillType(int worth, String skillname, Material material) {
@@ -33,8 +35,8 @@ public class SkillType implements Listener {
 
     }
 
-    public void registerListeners() {
-        
+    public void postinit() {
+
     }
 
     public boolean isUnlocked(User user) {
