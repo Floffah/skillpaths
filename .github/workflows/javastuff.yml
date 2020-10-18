@@ -22,7 +22,7 @@ jobs:
           PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: "mvn --settings settings.xml javadoc:javadoc"
       - name: Move javadoc
-        run: mv -v target/site/apidocs docs/
+        run: rm -r docs/ && mv -v target/site/apidocs docs/
       - uses: EndBug/add-and-commit@v5
         with:
           add: '.'
