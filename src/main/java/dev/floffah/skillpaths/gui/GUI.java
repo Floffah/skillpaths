@@ -2,6 +2,8 @@ package dev.floffah.skillpaths.gui;
 
 import dev.floffah.skillpaths.SkillPaths;
 import dev.floffah.skillpaths.skills.SkillType;
+import dev.floffah.skillpaths.skills.types.Agility;
+import dev.floffah.skillpaths.skills.types.Endurance;
 import dev.floffah.skillpaths.user.User;
 import dev.floffah.util.chat.Colours;
 import org.bukkit.Bukkit;
@@ -48,11 +50,10 @@ public class GUI implements Listener {
 
         inv.setItem(10, back);
 
-        SkillType[] skills = new SkillType[] {SkillType.Endurance, SkillType.Agility};
         int[] skillput = new int[] {20,21,22,23,24,25,26,29,30,31,32,33,34,35,38,39,41,42,43,44};
 
-        for(int i = 0;i<skills.length;i++) {
-            inv.setItem(skillput[i] - 1, Items.getSkillPane(user, main, skills[i]));
+        for(int i = 0;i<main.skills.length;i++) {
+            inv.setItem(skillput[i] - 1, Items.getSkillPane(user, main, main.skills[i]));
         }
 
         addBorder(inv, main);

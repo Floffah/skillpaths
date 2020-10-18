@@ -3,8 +3,11 @@ package dev.floffah.skillpaths;
 import dev.floffah.skillpaths.commands.Skills;
 import dev.floffah.skillpaths.gui.GUIEvents;
 import dev.floffah.skillpaths.listeners.UserStuff;
+import dev.floffah.skillpaths.skills.SkillType;
 import dev.floffah.skillpaths.skills.XPActions;
 import dev.floffah.skillpaths.skills.XPBenefits;
+import dev.floffah.skillpaths.skills.types.Agility;
+import dev.floffah.skillpaths.skills.types.Endurance;
 import dev.floffah.skillpaths.user.UserStore;
 import dev.floffah.skillpaths.util.Glow;
 import dev.floffah.skillpaths.util.Messages;
@@ -34,6 +37,8 @@ public final class SkillPaths extends JavaPlugin {
 
     public Path userData;
 
+    public SkillType[] skills = new SkillType[] {new Endurance(), new Agility()};
+
     public static Economy getEcon() {
         return econ;
     }
@@ -60,6 +65,10 @@ public final class SkillPaths extends JavaPlugin {
             System.err.println(e);
         } catch (Exception e) {
             System.err.println(e);
+        }
+
+        for (SkillType skill : skills) {
+            skill.init(this);
         }
 
         //vaultInit();
