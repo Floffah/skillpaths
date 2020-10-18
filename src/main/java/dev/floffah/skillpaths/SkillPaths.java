@@ -18,6 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public final class SkillPaths extends JavaPlugin {
@@ -31,16 +32,19 @@ public final class SkillPaths extends JavaPlugin {
     public YamlConfiguration messagesc;
     public Messages messages;
 
+    public Path userData;
+
     public static Economy getEcon() {
         return econ;
     }
 
     @Override
     public void onEnable() {
-        if (getServer().getPluginManager().getPlugin("FloffahUtil") == null) {
-            getLogger().warning("Couldnt not find plugin FloffahUtil.");
-            getServer().getPluginManager().disablePlugin(this);
-        }
+//        if (getServer().getPluginManager().getPlugin("FloffahUtil") == null) {
+//            getLogger().warning("Couldnt not find plugin FloffahUtil.");
+//            getServer().getPluginManager().disablePlugin(this);
+//        }
+        legacyFloffahUtilOnEnable();
 
         try {
             Field f = Enchantment.class.getDeclaredField("acceptingNew");
@@ -60,6 +64,18 @@ public final class SkillPaths extends JavaPlugin {
 
         //vaultInit();
         postVault();
+    }
+
+    public void legacyFloffahUtilOnEnable() {
+        if(!Files.exists(getDataFolder().toPath())) {
+            getDataFolder().mkdir();
+            getLogger().info("Created plugin directory");
+        }
+        userData = Paths.get(getDataFolder().toURI().toString(), "data");
+        if(!Files.exists(userData)) {
+            new File(userData.toString()).mkdir();
+            getLogger().info("Created data directory");
+        }
     }
 
     void vaultInit() {

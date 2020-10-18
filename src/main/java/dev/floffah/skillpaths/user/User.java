@@ -3,6 +3,7 @@ package dev.floffah.skillpaths.user;
 import dev.floffah.skillpaths.skills.SkillType;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
 
@@ -18,7 +19,7 @@ public class User extends dev.floffah.util.user.User {
      * @param pl        the player that the user references
      * @param pluginreq the plugin that requested the user
      */
-    public User(Player pl, Plugin pluginreq) {
+    public User(Player pl, JavaPlugin pluginreq) {
         super(pl, pluginreq);
         if(this.getData().get("plugins.skillpaths") == null) {
             this.getData().set("plugins.skillpaths.skillxp", 0);
