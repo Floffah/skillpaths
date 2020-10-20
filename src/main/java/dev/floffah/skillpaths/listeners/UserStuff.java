@@ -27,6 +27,9 @@ public class UserStuff implements Listener {
 
     @EventHandler
     public void onLeave(PlayerQuitEvent e) {
-        main.users.remove(e.getPlayer());
+        boolean didrm = main.users.remove(e.getPlayer());
+        if(!didrm) {
+            main.getLogger().warning("Could not remove player " + e.getPlayer().getName() + " (" + e.getPlayer().getUniqueId() + ")");
+        }
     }
 }

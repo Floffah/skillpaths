@@ -22,7 +22,7 @@ public class UserStore {
      */
     public UserStore(SkillPaths plugin) {
         main = plugin;
-        users = new HashMap<UUID, User>();
+        users = new HashMap<>();
     }
 
     /**
@@ -74,13 +74,14 @@ public class UserStore {
                 e.printStackTrace();
                 return false;
             }
+            users.remove(uuid);
             return true;
         } else {
             return false;
         }
     }
 
-    public void remove(Player player) {
-        remove(player.getUniqueId());
+    public boolean remove(Player player) {
+        return remove(player.getUniqueId());
     }
 }

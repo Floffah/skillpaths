@@ -13,6 +13,7 @@ import dev.floffah.skillpaths.util.Messages;
 import dev.floffah.util.items.NamespaceMap;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -141,6 +142,15 @@ public final class SkillPaths extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        users.users.keySet().forEach(uuid -> {
+            boolean didrm = users.remove(uuid);
+            Player plyr = getServer().getPlayer(uuid);
+            if(!didrm && plyr != null) {
+                getLogger().severe("Could not remove & save player " + plyr.getName() + " (" + plyr.getUniqueId() + ") although they are online");
+            } else if(!didrm) {
+                getLogger().warning("Could not remove & save player " + plyr.getName() + " (" + plyr.getUniqueId() + ") but they are offline so it shouldn't matter lol");
+            }
+        });
         getLogger().info("Disabled SkillPaths " + getDescription().getVersion());
     }
 }

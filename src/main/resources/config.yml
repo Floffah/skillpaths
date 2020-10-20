@@ -1,3 +1,8 @@
+# toggles
+toggles:
+  # this will spam the console
+  debug: false
+
 # Skill configuration
 skills:
   character:
